@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springbroker.demo.dao.TAuthEntCertDao">
+
+    <resultMap type="com.springbroker.demo.entity.TAuthEntCert" id="TAuthEntCertMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="customerCode" column="customer_code" jdbcType="VARCHAR"/>
+        <result property="agreement" column="agreement" jdbcType="VARCHAR"/>
+        <result property="entName" column="ent_name" jdbcType="VARCHAR"/>
+        <result property="certType" column="cert_type" jdbcType="VARCHAR"/>
+        <result property="legalPersonIdcard" column="legal_person_idcard" jdbcType="VARCHAR"/>
+        <result property="certAttachment" column="cert_attachment" jdbcType="VARCHAR"/>
+        <result property="idCardFrontPhoto" column="id_card_front_photo" jdbcType="VARCHAR"/>
+        <result property="idCardBackPhoto" column="id_card_back_photo" jdbcType="VARCHAR"/>
+        <result property="certAuth" column="cert_auth" jdbcType="VARCHAR"/>
+        <result property="applicantType" column="applicant_type" jdbcType="VARCHAR"/>
+        <result property="changeCertType" column="change_cert_type" jdbcType="VARCHAR"/>
+        <result property="changeIdCardFrontPhoto" column="change_id_card_front_photo" jdbcType="VARCHAR"/>
+        <result property="changeIdCardBackPhoto" column="change_id_card_back_photo" jdbcType="VARCHAR"/>
+        <result property="changeForm" column="change_form" jdbcType="VARCHAR"/>
+        <result property="changeCertify" column="change_certify" jdbcType="VARCHAR"/>
+        <result property="changeType" column="change_type" jdbcType="VARCHAR"/>
+        <result property="useStatus" column="use_status" jdbcType="INTEGER"/>
+        <result property="version" column="version" jdbcType="INTEGER"/>
+        <result property="delStatus" column="del_status" jdbcType="VARCHAR"/>
+        <result property="createUserId" column="create_user_id" jdbcType="VARCHAR"/>
+        <result property="createUsername" column="create_username" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateUserId" column="update_user_id" jdbcType="VARCHAR"/>
+        <result property="updateUsername" column="update_username" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="base_columns">
+        id, customer_code, agreement, ent_name, cert_type, legal_person_idcard, cert_attachment, id_card_front_photo, id_card_back_photo, cert_auth, applicant_type, change_cert_type, change_id_card_front_photo, change_id_card_back_photo, change_form, change_certify, change_type, use_status, version, del_status, create_user_id, create_username, create_time, update_user_id, update_username, update_time, remark
+    </sql>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TAuthEntCertMap">
+        select
+        <include refid="base_columns"/>
+        from brocker.t_auth_ent_cert
+        where id = #{id}
+    </select>
+
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TAuthEntCertMap">
+        select
+        <include refid="base_columns"/>
+        from brocker.t_auth_ent_cert
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="customerCode != null and customerCode != ''">
+                and customer_code = #{customerCode}
+            </if>
+            <if test="agreement != null and agreement != ''">
+                and agreement = #{agreement}
+            </if>
+            <if test="entName != null and entName != ''">
+                and ent_name = #{entName}
+            </if>
+            <if test="certType != null and certType != ''">
+                and cert_type = #{certType}
+            </if>
+            <if test="legalPersonIdcard != null and legalPersonIdcard != ''">
+                and legal_person_idcard = #{legalPersonIdcard}
+            </if>
+            <if test="certAttachment != null and certAttachment != ''">
+                and cert_attachment = #{certAttachment}
+            </if>
+            <if test="idCardFrontPhoto != null and idCardFrontPhoto != ''">
+                and id_card_front_photo = #{idCardFrontPhoto}
+            </if>
+            <if test="idCardBackPhoto != null and idCardBackPhoto != ''">
+                and id_card_back_photo = #{idCardBackPhoto}
+            </if>
+            <if test="certAuth != null and certAuth != ''">
+                and cert_auth = #{certAuth}
+            </if>
+            <if test="applicantType != null and applicantType != ''">
+                and applicant_type = #{applicantType}
+            </if>
+            <if test="changeCertType != null and changeCertType != ''">
+                and change_cert_type = #{changeCertType}
+            </if>
+            <if test="changeIdCardFrontPhoto != null and changeIdCardFrontPhoto != ''">
+                and change_id_card_front_photo = #{changeIdCardFrontPhoto}
+            </if>
+            <if test="changeIdCardBackPhoto != null and changeIdCardBackPhoto != ''">
+                and change_id_card_back_photo = #{changeIdCardBackPhoto}
+            </if>
+            <if test="changeForm != null and changeForm != ''">
+                and change_form = #{changeForm}
+            </if>
+            <if test="changeCertify != null and changeCertify != ''">
+                and change_certify = #{changeCertify}
+            </if>
+            <if test="changeType != null and changeType != ''">
+                and change_type = #{changeType}
+            </if>
+            <if test="useStatus != null">
+                and use_status = #{useStatus}
+            </if>
+            <if test="version != null">
+                and version = #{version}
+            </if>
+            <if test="delStatus != null and delStatus != ''">
+                and del_status = #{delStatus}
+            </if>
+            <if test="createUserId != null and createUserId != ''">
+                and create_user_id = #{createUserId}
+            </if>
+            <if test="createUsername != null and createUsername != ''">
+                and create_username = #{createUsername}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateUserId != null and updateUserId != ''">
+                and update_user_id = #{updateUserId}
+            </if>
+            <if test="updateUsername != null and updateUsername != ''">
+                and update_username = #{updateUsername}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+        </where>
+    </select>
+
+
+    <!-- 动态sql插入方法二   start -->
+    <!-- 对应的插入字段的名字  -->
+    <sql id="key">
+        <trim  prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != '' ">
+                id,
+            </if>
+            <if test="customerCode != null and customerCode != '' ">
+                customer_code,
+            </if>
+            <if test="agreement !=null and agreement !='' ">
+                agreement,
+            </if>
+            <if test="entName != null and entName != '' ">
+                ent_name,
+            </if>
+            <if test="certType != null and certType != ''">
+                cert_type,
+            </if>
+            <if test="legalPersonIdcard != null and legalPersonIdcard != '' ">
+                legal_person_idcard,
+            </if>
+            <if test="certAttachment != null and certAttachment != '' ">
+                cert_attachment,
+            </if>
+            <if test="idCardFrontPhoto != null and idCardFrontPhoto != ''">
+                id_card_front_photo,
+            </if>
+            <if test="idCardBackPhoto != null and idCardBackPhoto != ''">
+                id_card_back_photo,
+            </if>
+            <if test=" certAuth != null and certAuth != '' ">
+                cert_auth,
+            </if>
+            <if test=" applicantType !=null and applicantType != ''">
+                applicant_type,
+            </if>
+            <if test=" changeCertType !=null and changeCertType!=''">
+                change_cert_type,
+            </if>
+            <if test="changeIdCardFrontPhoto!=null and changeIdCardFrontPhoto!=''">
+                change_id_card_front_photo,
+            </if>
+            <if test="changeIdCardBackPhoto!=null and changeIdCardBackPhoto!=''">
+                change_id_card_back_photo,
+            </if>
+            <if test="changeForm!=null and changeForm!=''">
+                change_form,
+            </if>
+            <if test="changeCertify!=null and changeCertify!=''">
+                change_certify,
+            </if>
+            <if test="changeType!=null and changeType!=''">
+                change_type,
+            </if>
+            <if test="useStatus!=null and useStatus!=''">
+                use_status,
+            </if>
+            <if test="version!=null and version!=''">
+                version,
+            </if>
+            <if test="delStatus!=null and delStatus!=''">
+                del_status,
+            </if>
+            <if test="createUserId!=null and createUserId!=''">
+                create_user_id,
+            </if>
+            <if test="createUsername!=null and createUsername!=''">
+                create_username,
+            </if>
+            <if test="createTime!=null and createTime!=''">
+                create_time,
+            </if>
+            <if test="updateUserId!=null and updateUserId!=''">
+                update_user_id,
+            </if>
+            <if test="updateUsername!=null and updateUsername!=''">
+                update_username,
+            </if>
+            <if test="updateTime!=null and updateTime!=''">
+                update_time,
+            </if>
+            <if test="remark!=null and remark!=''">
+                remark,
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 对应的插入字段的值 -->
+    <sql id="values">
+        <trim  prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != '' ">
+                 #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="customerCode != null and customerCode != '' ">
+                #{customerCode,jdbcType=VARCHAR},
+            </if>
+            <if test="agreement !=null and agreement !='' ">
+                #{agreement,jdbcType=VARCHAR},
+            </if>
+            <if test="entName != null and entName != '' ">
+                #{entName,jdbcType=VARCHAR},
+            </if>
+            <if test="certType != null and certType != ''">
+                #{certType,jdbcType=VARCHAR},
+            </if>
+            <if test="legalPersonIdcard != null and legalPersonIdcard != '' ">
+                #{legalPersonIdcard,jdbcType=VARCHAR},
+            </if>
+            <if test="certAttachment != null and certAttachment != '' ">
+                #{certAttachment,jdbcType=VARCHAR},
+            </if>
+            <if test="idCardFrontPhoto != null and idCardFrontPhoto != ''">
+                #{idCardFrontPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="idCardBackPhoto != null and idCardBackPhoto != ''">
+                #{idCardBackPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test=" certAuth != null and certAuth != '' ">
+                #{certAuth,jdbcType=VARCHAR},
+            </if>
+            <if test=" applicantType !=null and applicantType != ''">
+                #{applicantType,jdbcType=VARCHAR},
+            </if>
+            <if test=" changeCertType !=null and changeCertType!=''">
+                #{changeCertType,jdbcType=VARCHAR},
+            </if>
+            <if test="changeIdCardFrontPhoto!=null and changeIdCardFrontPhoto!=''">
+                #{changeIdCardFrontPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="changeIdCardBackPhoto!=null and changeIdCardBackPhoto!=''">
+                #{changeIdCardBackPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="changeForm!=null and changeForm!=''">
+                #{changeForm,jdbcType=VARCHAR},
+            </if>
+            <if test="changeCertify!=null and changeCertify!=''">
+                #{changeCertify,jdbcType=VARCHAR},
+            </if>
+            <if test="changeType!=null and changeType!=''">
+                #{changeType,jdbcType=VARCHAR},
+            </if>
+            <if test="useStatus!=null">
+                #{useStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="version!=null">
+                #{version,jdbcType=VARCHAR},
+            </if>
+            <if test="delStatus!=null and delStatus!=''">
+                #{delStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId!=null and createUserId!=''">
+                #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createUsername!=null and createUsername!=''">
+                #{createUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime!=null ">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUserId!=null and updateUserId!=''">
+                #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUsername!=null and updateUsername!=''">
+                #{updateUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+                #{updateTime ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null and remark!=''">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </sql>
+    <insert id="insert" parameterType="com.springbroker.demo.entity.TAuthEntCert">
+        insert into t_auth_ent_cert <include refid="key"/>
+        values <include refid="values"/>
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update brocker.t_auth_ent_cert
+        <set>
+            <if test="customerCode != null and customerCode != ''">
+                customer_code = #{customerCode},
+            </if>
+            <if test="agreement != null and agreement != ''">
+                agreement = #{agreement},
+            </if>
+            <if test="entName != null and entName != ''">
+                ent_name = #{entName},
+            </if>
+            <if test="certType != null and certType != ''">
+                cert_type = #{certType},
+            </if>
+            <if test="legalPersonIdcard != null and legalPersonIdcard != ''">
+                legal_person_idcard = #{legalPersonIdcard},
+            </if>
+            <if test="certAttachment != null and certAttachment != ''">
+                cert_attachment = #{certAttachment},
+            </if>
+            <if test="idCardFrontPhoto != null and idCardFrontPhoto != ''">
+                id_card_front_photo = #{idCardFrontPhoto},
+            </if>
+            <if test="idCardBackPhoto != null and idCardBackPhoto != ''">
+                id_card_back_photo = #{idCardBackPhoto},
+            </if>
+            <if test="certAuth != null and certAuth != ''">
+                cert_auth = #{certAuth},
+            </if>
+            <if test="applicantType != null and applicantType != ''">
+                applicant_type = #{applicantType},
+            </if>
+            <if test="changeCertType != null and changeCertType != ''">
+                change_cert_type = #{changeCertType},
+            </if>
+            <if test="changeIdCardFrontPhoto != null and changeIdCardFrontPhoto != ''">
+                change_id_card_front_photo = #{changeIdCardFrontPhoto},
+            </if>
+            <if test="changeIdCardBackPhoto != null and changeIdCardBackPhoto != ''">
+                change_id_card_back_photo = #{changeIdCardBackPhoto},
+            </if>
+            <if test="changeForm != null and changeForm != ''">
+                change_form = #{changeForm},
+            </if>
+            <if test="changeCertify != null and changeCertify != ''">
+                change_certify = #{changeCertify},
+            </if>
+            <if test="changeType != null and changeType != ''">
+                change_type = #{changeType},
+            </if>
+            <if test="useStatus != null">
+                use_status = #{useStatus},
+            </if>
+            <if test="version != null">
+                version = #{version},
+            </if>
+            <if test="delStatus != null and delStatus != ''">
+                del_status = #{delStatus},
+            </if>
+            <if test="createUserId != null and createUserId != ''">
+                create_user_id = #{createUserId},
+            </if>
+            <if test="createUsername != null and createUsername != ''">
+                create_username = #{createUsername},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateUserId != null and updateUserId != ''">
+                update_user_id = #{updateUserId},
+            </if>
+            <if test="updateUsername != null and updateUsername != ''">
+                update_username = #{updateUsername},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from brocker.t_auth_ent_cert where id = #{id}
+    </delete>
+
+</mapper>
