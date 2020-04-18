@@ -25,27 +25,18 @@ import org.springframework.stereotype.Component;
 public class FillParams {
 
 
-    @Pointcut("@args(com.springbroker.demo.config.annotion.SetParam)")
+    @Pointcut("@annotation(com.springbroker.demo.config.annotion.SetParam)")
     private void setParamPointcut(){}
 
     @Before("setParamPointcut()")
     public void before(JoinPoint joinPoint){
-        MethodSignature signature = (MethodSignature)joinPoint.getSignature();
-        Annotation[][] annotations = signature.getMethod().getParameterAnnotations();
-        Object[] args = joinPoint.getArgs();
-        for (Annotation[] annotation : annotations) {
-            int paramIndex = ArrayUtils.indexOf(annotations, annotation);
-            for (Annotation annotation1 : annotation){
-                if (annotation1 instanceof SetParam){
-                    Object arg = args[paramIndex];
-                    if (arg instanceof BaseDto){
-                        BaseDto baseDto = (BaseDto)arg;
-                        baseDto.setCreateTime(new Date());
-                        baseDto.setCreateUserId("11111");
-                        baseDto.setCreateUsername("王延伟");
-                    }
-
-                }
+        Object[] args1 = joinPoint.getArgs();
+        for (Object o : args1) {
+            if (o instanceof BaseDto){
+                BaseDto baseDto = (BaseDto)o;
+                baseDto.setCreateTime(new Date());
+                baseDto.setCreateUserId("11111");
+                baseDto.setCreateUsername("王延伟");
             }
         }
     }

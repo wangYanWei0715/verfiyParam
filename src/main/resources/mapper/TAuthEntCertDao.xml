@@ -206,7 +206,7 @@
             <if test="createUsername!=null and createUsername!=''">
                 create_username,
             </if>
-            <if test="createTime!=null and createTime!=''">
+            <if test="createTime!=null">
                 create_time,
             </if>
             <if test="updateUserId!=null and updateUserId!=''">
@@ -215,7 +215,7 @@
             <if test="updateUsername!=null and updateUsername!=''">
                 update_username,
             </if>
-            <if test="updateTime!=null and updateTime!=''">
+            <if test="updateTime!=null">
                 update_time,
             </if>
             <if test="remark!=null and remark!=''">
@@ -317,7 +317,7 @@
 
     <!--通过主键修改数据-->
     <update id="update">
-        update brocker.t_auth_ent_cert
+        update t_auth_ent_cert
         <set>
             <if test="customerCode != null and customerCode != ''">
                 customer_code = #{customerCode},

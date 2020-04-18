@@ -39,20 +39,36 @@ public class TAuthEntCertController {
     }
 
     @PostMapping("/insert")
-    @SetParam
-    public JsonResult insert(@RequestBody @Validated(VerifyAdd.class) @SetParam TAuthEntCert tAuthEntCert){
+    public JsonResult insert(@RequestBody @Validated(VerifyAdd.class) TAuthEntCert tAuthEntCert){
         String replace = UUID.randomUUID().toString().replace("-", "");
         tAuthEntCert.setId(replace);
         TAuthEntCert insert = tAuthEntCertService.insert(tAuthEntCert);
         return  JsonResult.success(insert);
     }
 
-    @PostMapping("/update")
+
+    /*@PostMapping("/insert")
+    @SetParam
+    public JsonResult insert(@RequestBody @Validated(VerifyAdd.class) @SetParam TAuthEntCert tAuthEntCert){
+        String replace = UUID.randomUUID().toString().replace("-", "");
+        tAuthEntCert.setId(replace);
+        TAuthEntCert insert = tAuthEntCertService.insert(tAuthEntCert);
+        return  JsonResult.success(insert);
+    }*/
+
+   /*@PostMapping("/update")
     @SetParam
     public JsonResult update(@RequestBody @Validated(VerifyUpdate.class) @SetParam TAuthEntCert tAuthEntCert){
         TAuthEntCert update = tAuthEntCertService.update(tAuthEntCert);
         return JsonResult.success(update);
+    }*/
+
+    @PostMapping("/update")
+    public JsonResult update(@RequestBody @Validated(VerifyUpdate.class)  TAuthEntCert tAuthEntCert){
+        TAuthEntCert update = tAuthEntCertService.update(tAuthEntCert);
+        return JsonResult.success(update);
     }
+
 
     @GetMapping("/delete")
     public JsonResult delete(@RequestParam String id){
