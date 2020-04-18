@@ -1,13 +1,12 @@
 package com.springbroker.demo.controller;
 
+import com.springbroker.demo.config.annotion.SetParam;
 import com.springbroker.demo.config.interfaces.VerifyAdd;
 import com.springbroker.demo.config.interfaces.VerifyUpdate;
 import com.springbroker.demo.config.result.JsonResult;
 import com.springbroker.demo.entity.TAuthEntCert;
 import com.springbroker.demo.service.TAuthEntCertService;
 import java.util.UUID;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +39,8 @@ public class TAuthEntCertController {
     }
 
     @PostMapping("/insert")
-    public JsonResult insert(@RequestBody @Validated(VerifyAdd.class) TAuthEntCert tAuthEntCert){
+    @SetParam
+    public JsonResult insert(@RequestBody @Validated(VerifyAdd.class) @SetParam TAuthEntCert tAuthEntCert){
         String replace = UUID.randomUUID().toString().replace("-", "");
         tAuthEntCert.setId(replace);
         TAuthEntCert insert = tAuthEntCertService.insert(tAuthEntCert);
@@ -48,7 +48,8 @@ public class TAuthEntCertController {
     }
 
     @PostMapping("/update")
-    public JsonResult update(@RequestBody @Validated(VerifyUpdate.class) TAuthEntCert tAuthEntCert){
+    @SetParam
+    public JsonResult update(@RequestBody @Validated(VerifyUpdate.class) @SetParam TAuthEntCert tAuthEntCert){
         TAuthEntCert update = tAuthEntCertService.update(tAuthEntCert);
         return JsonResult.success(update);
     }

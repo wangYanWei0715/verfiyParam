@@ -38,10 +38,7 @@ public class TAuthEntCertServiceImpl implements TAuthEntCertService {
      * @param limit 查询条数
      * @return 对象列表
      */
-    @Override
-    public List<TAuthEntCert> queryAllByLimit(int offset, int limit) {
-        return this.tAuthEntCertDao.queryAllByLimit(offset, limit);
-    }
+
 
     /**
      * 新增数据

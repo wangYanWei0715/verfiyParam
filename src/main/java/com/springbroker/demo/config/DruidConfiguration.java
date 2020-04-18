@@ -3,8 +3,7 @@ package com.springbroker.demo.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -19,15 +18,16 @@ import java.sql.SQLException;
  * Created by xiabin on 2017/6/18.
  */
 @Configuration
+@Slf4j
 public class DruidConfiguration {
 
-    private static final Logger logger = LoggerFactory.getLogger(DruidConfiguration.class);
+
 
     private static final String DB_PREFIX = "spring.datasource";
 
     @Bean
     public ServletRegistrationBean druidServlet() {
-        logger.info("init Druid Servlet Configuration ");
+        log.info("init Druid Servlet Configuration ");
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
         // IP白名单
         servletRegistrationBean.addInitParameter("allow", "192.168.2.25,127.0.0.1");

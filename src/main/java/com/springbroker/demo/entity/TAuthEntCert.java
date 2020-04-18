@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.Length;
  * @since 2020-04-18 00:56:06
  */
 @Data
-public class TAuthEntCert implements Serializable {
+public class TAuthEntCert extends BaseDto implements Serializable {
     private static final long serialVersionUID = 254644964785400041L;
     /**
     * 主键
@@ -108,31 +108,7 @@ public class TAuthEntCert implements Serializable {
     /**
     * 数据状态 0,正常 1.已删除
     */
-    private String delStatus;
-    /**
-    * 创建者ID
-    */
-    private String createUserId;
-    /**
-    * 创建者姓名
-    */
-    private String createUsername;
-    /**
-    * 创建时间
-    */
-    private Date createTime;
-    /**
-    * 修改者ID
-    */
-    private String updateUserId;
-    /**
-    * 修改者姓名
-    */
-    private String updateUsername;
-    /**
-    * 修改时间
-    */
-    private Date updateTime;
+
     /**
     * 备注
     */
@@ -291,61 +267,6 @@ public class TAuthEntCert implements Serializable {
         this.version = version;
     }
 
-    public String getDelStatus() {
-        return delStatus;
-    }
-
-    public void setDelStatus(String delStatus) {
-        this.delStatus = delStatus;
-    }
-
-    public String getCreateUserId() {
-        return createUserId;
-    }
-
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId;
-    }
-
-    public String getCreateUsername() {
-        return createUsername;
-    }
-
-    public void setCreateUsername(String createUsername) {
-        this.createUsername = createUsername;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateUserId() {
-        return updateUserId;
-    }
-
-    public void setUpdateUserId(String updateUserId) {
-        this.updateUserId = updateUserId;
-    }
-
-    public String getUpdateUsername() {
-        return updateUsername;
-    }
-
-    public void setUpdateUsername(String updateUsername) {
-        this.updateUsername = updateUsername;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 
     public String getRemark() {
         return remark;
